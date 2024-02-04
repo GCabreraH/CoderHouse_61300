@@ -1,11 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import Usuario from './src/components/Usuario';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Hola Alumnos!</Text>
+      <Text>Usuarios</Text>
+      <Usuario usuario="Fernando"/>
       <Text>Chau</Text>
+      
       <StatusBar style="auto" />
     </View>
   );

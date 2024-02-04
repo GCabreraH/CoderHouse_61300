@@ -1,22 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TextInput, Pressable } from 'react-native';
+import { useState } from 'react';
 import Usuario from './src/components/Usuario';
 import cartLogo from './assets/cart.png'
 const imagenCarrito = "https://purepng.com/public/uploads/large/purepng.com-shopping-cartshoppingcarttrolleycarriagebuggysupermarkets-14215265323859lqxv.png";
 
+
 export default function App() {
+
+  //useState y useEffect hooks para controlar el estado de la aplicacion y el ciclo de vida
+const [counter, setCounter] = useState(0);
+const addCounter = () => setCounter(counter+1);
+
   return (
     <View>
         <View style={styles.header}>
           <View style={styles.carrito}>
             <Text>Carrito</Text>
             <Image style={{width: 50, height: 50}} source={{uri: imagenCarrito}} />
-            {/*<Image style={{width: 50, height: 50}} source={cartLogo} />*/}
+            
           </View>
 
           <View style={styles.agregadorProductos}>
           <TextInput style={styles.inputText} placeholder='Ingrese un productos' />
-          <Pressable> 
+          <Pressable onPress={()=> setCounter(counter+1)}> 
             <Text style={{fontSize: 40}}>+</Text>
           </Pressable>
 
@@ -24,7 +31,7 @@ export default function App() {
         </View>
     <View style={styles.productList}>
       <Text style={styles.productos}>Poleras</Text>
-      <Text style={styles.productos}>Pantalon</Text>
+      <Text style={styles.productos}>Pantalons</Text>
       <Text style={styles.productos}>Gorro</Text>      
       <Text style={styles.productos}>Poleras</Text>
       <Text style={styles.productos}>Pantalon</Text>
@@ -33,6 +40,10 @@ export default function App() {
       <Text style={styles.productos}>Pantalon</Text>
       <Text style={styles.productos}>Gorro</Text>
       </View>
+
+      <Pressable onPress={addCounter} >
+        <Text style={{fontSize:30}}>{counter}</Text>
+      </Pressable>
     </View>
   );
 }

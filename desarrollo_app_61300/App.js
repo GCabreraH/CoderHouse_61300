@@ -6,21 +6,23 @@ const imagenCarrito = "https://purepng.com/public/uploads/large/purepng.com-shop
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <View style={{flexDirection: 'row', justifyContent: "center", gap: 8, alignItems: "center" }}>
-      <Text>Carrito</Text>
-      <Image style={{width: 50, height: 50}} source={{uri: imagenCarrito}} />
-      {/*<Image style={{width: 50, height: 50}} source={cartLogo} />*/}
-      </View>
-
-      <View style={{flexDirection: "row", gap: 30}}>
-        <TextInput style={styles.inputText} placeholder='Ingrese un producto' />
-        <Pressable> 
-        <Text style={{fontSize: 40}}>+</Text>
-        </Pressable>
-      </View>
-
     <View>
+
+        <View style={styles.header}>
+          <View style={styles.carrito}>
+            <Text>Carrito</Text>
+            <Image style={{width: 50, height: 50}} source={{uri: imagenCarrito}} />
+            {/*<Image style={{width: 50, height: 50}} source={cartLogo} />*/}
+          </View>
+
+          <View style={{flexDirection: "row", gap: 30}}>
+          <TextInput style={styles.inputText} placeholder='Ingrese un producto' />
+          <Pressable> 
+            <Text style={{fontSize: 40}}>+</Text>
+          </Pressable>
+          </View>
+        </View>
+    <View style={styles.container}>
       <Text style={styles.productos}>Poleras</Text>
       <Text style={styles.productos}>Pantalon</Text>
       <Text style={styles.productos}>Gorro</Text>      
@@ -38,13 +40,18 @@ export default function App() {
 const styles = StyleSheet.create({
   
   header:{
-  backgroundColor: '#ededed', 
-  flex: 0.16,
+  backgroundColor: '#C1F8F8',
+  alignSelf: 'stretch',
+   
 },
+  carrito: {
+  flexDirection: 'row', justifyContent: "center", gap: 8, alignItems: "center" 
+
+  },
+
     container: {
     paddingTop: 20,
     paddingHorizontal: 25,
-    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',

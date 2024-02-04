@@ -16,7 +16,7 @@ export default function App() {
           </View>
 
           <View style={{flexDirection: "row", gap: 30}}>
-          <TextInput style={styles.inputText} placeholder='Ingrese un producto' />
+          <TextInput style={styles.inputText} placeholder='Ingrese un productorz' />
           <Pressable> 
             <Text style={{fontSize: 40}}>+</Text>
           </Pressable>

@@ -7,7 +7,6 @@ const imagenCarrito = "https://purepng.com/public/uploads/large/purepng.com-shop
 export default function App() {
   return (
     <View>
-
         <View style={styles.header}>
           <View style={styles.carrito}>
             <Text>Carrito</Text>
@@ -15,14 +14,15 @@ export default function App() {
             {/*<Image style={{width: 50, height: 50}} source={cartLogo} />*/}
           </View>
 
-          <View style={{flexDirection: "row", gap: 30}}>
-          <TextInput style={styles.inputText} placeholder='Ingrese un productorz' />
+          <View style={styles.agregadorProductos}>
+          <TextInput style={styles.inputText} placeholder='Ingrese un productos' />
           <Pressable> 
             <Text style={{fontSize: 40}}>+</Text>
           </Pressable>
+
           </View>
         </View>
-    <View style={styles.container}>
+    <View style={styles.productList}>
       <Text style={styles.productos}>Poleras</Text>
       <Text style={styles.productos}>Pantalon</Text>
       <Text style={styles.productos}>Gorro</Text>      
@@ -49,12 +49,15 @@ const styles = StyleSheet.create({
 
   },
 
-    container: {
+    productList: {
     paddingTop: 20,
     paddingHorizontal: 25,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  agregadorProductos:{
+    flexDirection: "row", gap: 30
   },
 
   inputText:{
@@ -72,5 +75,4 @@ const styles = StyleSheet.create({
     padding: 4
 
   }
-
 });

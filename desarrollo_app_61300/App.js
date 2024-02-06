@@ -9,36 +9,8 @@ const DATA = [
   {"name": "Polera", "id": 1},
   {"name": "Pantalón", "id": 2},
   {"name": "Zapatillas", "id": 3},
-  {"name": "Cartera", "id": 4},
-  {"name": "Chaqueta", "id": 5},
-  {"name": "Vestido", "id": 6},
-  {"name": "Bufanda", "id": 7},
-  {"name": "Camiseta", "id": 8},
-  {"name": "Gorra", "id": 9},
-  {"name": "Botas", "id": 10},
-  {"name": "Blusa", "id": 11},
-  {"name": "Sombrero", "id": 12},
-  {"name": "Calcetines", "id": 13},
-  {"name": "Guantes", "id": 14},
-  {"name": "Chaleco", "id": 15},
-  {"name": "Faldas", "id": 16},
-  {"name": "Corbata", "id": 17},
-  {"name": "Traje de baño", "id": 18},
-  {"name": "Abrigo", "id": 19},
-  {"name": "Pijama", "id": 20},
-  {"name": "Cinturón", "id": 21},
-  {"name": "Ropa interior", "id": 22},
-  {"name": "Sandalias", "id": 23},
-  {"name": "Mochila", "id": 24},
-  {"name": "Sudadera", "id": 25},
-  {"name": "Poncho", "id": 26},
-  {"name": "Chándal", "id": 27},
-  {"name": "Pulsera", "id": 28},
-  {"name": "Gafas de sol", "id": 29},
-  {"name": "Jersey", "id": 30},
-  {"name": "Máscara facial", "id": 31},
-  {"name": "Paraguas", "id": 32},
-  {"name": "Bolso", "id": 33}
+
+
 ];
 
 export default function App() {
@@ -46,12 +18,17 @@ export default function App() {
   //useState y useEffect hooks para controlar el estado de la aplicacion y el ciclo de vida
 const [counter, setCounter] = useState(0);
 const [inputValue, setInputValue] = useState('');
-const [inputAdd, setInputAdd] = useState('');
+const [cartItems, setCartItems] = useState([]);
 
 const addCounter = () => setCounter(counter+1);
 const handleInputChange = (value) =>setInputValue(value);
-const handleInputAdd = (value) => setInputAdd(DATA.push(value));
-
+const addItem = () => {
+const newItem = {
+  name: (inputValue),
+  id: new Date().getTime()
+    }
+    setCartItems([...cartItems, newItem])
+}
 
   return (
     <View>
@@ -64,7 +41,7 @@ const handleInputAdd = (value) => setInputAdd(DATA.push(value));
 
           <View style={styles.agregadorProductos}>
           <TextInput value={inputValue} onChangeText={handleInputChange} style={styles.inputText} placeholder='Ingrese un productos' />
-          <Pressable onPressOut={handleInputAdd}> 
+          <Pressable onPress={addItem}> 
             <Text style={{fontSize: 40}}>+</Text>
           </Pressable>
 
@@ -77,9 +54,8 @@ const handleInputAdd = (value) => setInputAdd(DATA.push(value));
         </View>
       ))*/}
 
-      <FlatList data={DATA} 
-      renderItem={({ item }) => (
-        <View style={styles.agregadorProductos}>
+      <FlatList data={cartItems} renderItem={({ item }) => (
+        <View>
           <Text style={styles.productList}>Producto: {item.name}</Text>
         </View>
       )}
@@ -93,7 +69,7 @@ const handleInputAdd = (value) => setInputAdd(DATA.push(value));
 
       <Pressable onPress={addCounter} >
         <Text style={{fontSize:30}}>{counter}</Text>
-        <Text>{inputValue}</Text>
+        
       </Pressable>
     </View>
   );
@@ -114,8 +90,6 @@ const styles = StyleSheet.create({
     productList: {
     paddingTop: 10,
     paddingHorizontal: 10,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
     width: 400,
   },
   agregadorProductos:{

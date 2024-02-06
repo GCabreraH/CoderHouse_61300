@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TextInput, Pressable, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Pressable, FlatList, Modal, RemoveModal } from 'react-native';
 import { useState } from 'react';
 import Usuario from './src/components/Usuario';
 import cartLogo from './assets/cart.png'
@@ -19,6 +19,8 @@ export default function App() {
 const [counter, setCounter] = useState(0);
 const [inputValue, setInputValue] = useState('');
 const [cartItems, setCartItems] = useState([]);
+const [modalVisible, setModalVisible] = useState(true);
+
 
 const addCounter = () => setCounter(counter+1);
 const handleInputChange = (value) =>setInputValue(value);
@@ -29,6 +31,18 @@ const newItem = {
     }
     setCartItems([...cartItems, newItem])
 }
+
+  const RemoveModal = ()=> {
+    return(
+    <Modal animationType="Slide" transparent visible={modalVisible} onRequestClose>
+      <View>
+        <Text style={{fontSize: 20}}> ¿Quieres eliminar el producto? </Text>
+
+      </View>
+
+    </Modal>
+        );
+  };
 
   return (
     <View>
@@ -57,11 +71,11 @@ const newItem = {
       <FlatList data={cartItems} renderItem={({ item }) => (
         <View>
           <Text style={styles.productList}>Producto: {item.name}</Text>
+           
         </View>
       )}
       keyExtractor={item => item.id}
-      
-      
+           
       />
 
       

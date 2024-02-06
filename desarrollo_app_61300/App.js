@@ -36,7 +36,7 @@ const newItem = {
     return(
     <Modal animationType="Slide" transparent visible={modalVisible} onRequestClose>
       <View>
-        <Text style={{fontSize: 20}}> ¿Quieres eliminar el producto? </Text>
+        <Text style={{fontSize: 30}}> ¿Quieres eliminar el producto? </Text>
 
       </View>
 

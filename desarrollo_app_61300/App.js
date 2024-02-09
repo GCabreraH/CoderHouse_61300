@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
+import Constants from 'expo-constants';
 import { StyleSheet, Text, View, Image, TextInput, Pressable, FlatList, Modal, RemoveModal } from 'react-native';
 import { useState } from 'react';
 import Usuario from './src/components/Usuario';
 import cartLogo from './assets/cart.png'
 const imagenCarrito = "https://purepng.com/public/uploads/large/purepng.com-shopping-cartshoppingcarttrolleycarriagebuggysupermarkets-14215265323859lqxv.png";
+const borrar = "https://purepng.com/public/uploads/large/purepng.com-trash-cantrash-cansteelplasticdustbinrecyclebiniconclipart-14215266460202ha6s.png";
 
 const DATA = [
   {"name": "Polera", "id": 1},
@@ -19,11 +21,13 @@ export default function App() {
 const [counter, setCounter] = useState(0);
 const [inputValue, setInputValue] = useState('');
 const [cartItems, setCartItems] = useState([]);
-const [modalVisible, setModalVisible] = useState(true);
+const [modalVisible, setModalVisible] = useState(false);
 
 
 const addCounter = () => setCounter(counter+1);
 const handleInputChange = (value) =>setInputValue(value);
+const handleModal = ()=> setModalVisible(true);
+
 const addItem = () => {
 const newItem = {
   name: (inputValue),
@@ -34,10 +38,15 @@ const newItem = {
 
   const RemoveModal = ()=> {
     return(
-    <Modal animationType="Slide" transparent visible={modalVisible} onRequestClose>
-      <View>
+    <Modal animationType="slide" transparent visible={modalVisible}>
+      <View style={styles.modalContainer} >
         <Text style={{fontSize: 20}}> ¿Quieres eliminar el producto? </Text>
-
+        <Pressable>
+        <Text>Sí!</Text>
+        </Pressable>
+        <Pressable onPress={()=> setModalVisible(false)}>
+        <Text>No!!</Text>
+        </Pressable>
       </View>
 
     </Modal>
@@ -45,7 +54,9 @@ const newItem = {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
+      <StatusBar style="auto"/>
+      <RemoveModal />
         <View style={styles.header}>
           <View style={styles.carrito}>
             <Text>Carrito</Text>
@@ -69,9 +80,11 @@ const newItem = {
       ))*/}
 
       <FlatList data={cartItems} renderItem={({ item }) => (
-        <View>
+        <View style={{ width: 400, flexDirection: 'row'}}>
           <Text style={styles.productList}>Producto: {item.name}</Text>
-           
+          <Pressable onPress={handleModal}>
+            <Image style={{width: 50, height: 50}} source={{uri: borrar}} />
+          </Pressable>   
         </View>
       )}
       keyExtractor={item => item.id}
@@ -91,6 +104,31 @@ const newItem = {
 
 const styles = StyleSheet.create({
   
+  container:{
+    backgroundColor: '#ededed',
+    paddingHorizontal: 14,
+    paddingTop: Constants.statusBarHeight,
+     
+  },  
+  
+  modalContainer:{
+    height: 200,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    justifyContent: "space-between",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation:5,
+         
+  },
+  
   header:{
   backgroundColor: '#C1F8F8',
   alignSelf: 'stretch',
@@ -104,7 +142,7 @@ const styles = StyleSheet.create({
     productList: {
     paddingTop: 10,
     paddingHorizontal: 10,
-    width: 400,
+    
   },
   agregadorProductos:{
     flexDirection: "row", gap: 10

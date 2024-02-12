@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import Constants from 'expo-constants';
-import { StyleSheet, Text, View, Image, TextInput, Pressable, FlatList, Modal, RemoveModal } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Pressable, FlatList, Modal } from 'react-native';
 import { useState } from 'react';
-import Usuario from './src/components/Usuario';
+import RemoveModal from './src/components/RemoveModal';
 import cartLogo from './assets/cart.png'
 const imagenCarrito = "https://purepng.com/public/uploads/large/purepng.com-shopping-cartshoppingcarttrolleycarriagebuggysupermarkets-14215265323859lqxv.png";
 const borrar = "https://purepng.com/public/uploads/large/purepng.com-trash-cantrash-cansteelplasticdustbinrecyclebiniconclipart-14215266460202ha6s.png";
@@ -11,8 +11,6 @@ const DATA = [
   {"name": "Polera", "id": 1},
   {"name": "Pantalón", "id": 2},
   {"name": "Zapatillas", "id": 3},
-
-
 ];
 
 export default function App() {
@@ -40,33 +38,16 @@ const newItem = {
     setCartItems([...cartItems, newItem])
 }
 
-const RemoveItem = (itemId) =>{
-  const fileredArray =cartItems.filter((item)=> item.id  !== itemSelected);
-  setCartItems(fileredArray);
-  setModalVisible(false);
-};
-
-  const RemoveModal = ()=> {
-    return(
-    <Modal animationType="slide" transparent visible={modalVisible}>
-      <View style={styles.modalContainer}>
-        <Text style={{fontSize: 20}}> ¿Quieres eliminar el producto? </Text>
-        <Pressable onPress={() => setModalVisible(false)}>
-        <Text>No!!</Text>
-        </Pressable>
-        <Pressable onPress={RemoveItem}>
-        <Text>Sí!</Text>
-        </Pressable>
-      </View>
-
-    </Modal>
-        );
-  };
-
   return (
     <View style={styles.container}>
       <StatusBar style="auto"/>
-      <RemoveModal />
+      <RemoveModal 
+      modalVisible={modalVisible}
+      cartItems={cartItems}
+      setCartItems={setCartItems}
+      setModalVisible={setModalVisible}
+      itemSelected={itemSelected} 
+      />
         <View style={styles.header}>
           <View style={styles.carrito}>
             <Text>Carrito</Text>

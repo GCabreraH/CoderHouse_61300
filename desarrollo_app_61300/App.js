@@ -22,12 +22,16 @@ const [counter, setCounter] = useState(0);
 const [inputValue, setInputValue] = useState('');
 const [cartItems, setCartItems] = useState([]);
 const [modalVisible, setModalVisible] = useState(false);
+const [itemSelected, setItemSelected] = useState(null);
 
 
 const addCounter = () => setCounter(counter+1);
 const handleInputChange = (value) =>setInputValue(value);
-const handleModal = ()=> setModalVisible(true);
-
+const handleModal = (id)=> {
+  setModalVisible(true);
+  setItemSelected(id);
+  console.log(id)
+};
 const addItem = () => {
 const newItem = {
   name: (inputValue),
@@ -36,16 +40,22 @@ const newItem = {
     setCartItems([...cartItems, newItem])
 }
 
+const RemoveItem = (itemId) =>{
+  const fileredArray =cartItems.filter((item)=> item.id  !== itemSelected);
+  setCartItems(fileredArray);
+  setModalVisible(false);
+};
+
   const RemoveModal = ()=> {
     return(
     <Modal animationType="slide" transparent visible={modalVisible}>
-      <View style={styles.modalContainer} >
+      <View style={styles.modalContainer}>
         <Text style={{fontSize: 20}}> ¿Quieres eliminar el producto? </Text>
-        <Pressable>
-        <Text>Sí!</Text>
-        </Pressable>
-        <Pressable onPress={()=> setModalVisible(false)}>
+        <Pressable onPress={() => setModalVisible(false)}>
         <Text>No!!</Text>
+        </Pressable>
+        <Pressable onPress={RemoveItem}>
+        <Text>Sí!</Text>
         </Pressable>
       </View>
 
@@ -82,7 +92,7 @@ const newItem = {
       <FlatList data={cartItems} renderItem={({ item }) => (
         <View style={{ width: 400, flexDirection: 'row'}}>
           <Text style={styles.productList}>Producto: {item.name}</Text>
-          <Pressable onPress={handleModal}>
+          <Pressable onPress={()=> handleModal(item.id)}>
             <Image style={{width: 50, height: 50}} source={{uri: borrar}} />
           </Pressable>   
         </View>

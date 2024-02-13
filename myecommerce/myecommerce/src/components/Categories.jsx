@@ -14,9 +14,7 @@ function Categories(){
                 renderItem={({item}) => (
                     <CategoryItem category={item}/>
                 )}
-                keyExtractor={(category) => category}
-                    
-            
+                keyExtractor={(category) => category}            
             />       
         </View>
     );

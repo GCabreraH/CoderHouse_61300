@@ -1,9 +1,9 @@
 import { View, Text } from "react-native";
 
-function Header(){
+function Header({title}){
     return(
         <View>
-            <Text>Título</Text>
+            <Text style={{fontSize:20}}>{title}</Text>
         </View>
     );
 }

@@ -4,8 +4,8 @@ import Header from "../components/Header";
 function Home(){
     return(
         <View>
-            <Header />
-            <Text>Inicio</Text>
+            <Header title={'Inicio por props para reutilizar'} />
+            <Text>Inicio: texto de Home.jsx</Text>
             
         </View>
     );

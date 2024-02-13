@@ -1,13 +1,21 @@
 /*Este componente permite reutilizar categorias sin necesidad de codigicarlas cada una.*/
 
-import { View, Text } from "react-native";
+import { View, Text, FlatList } from "react-native";
+import categories from "../data/categories.json";
 
 function Categories(){
     return(
         <View>
-            <Text style={{fontSize:15}}>Poleras</Text>
-            <Text style={{fontSize:15}}>Pantalones</Text>
-            <Text style={{fontSize:15}}>Camisas</Text>
+            <FlatList 
+                data={categories}
+                renderItem={({item}) => (
+                    <View>
+                        <Text>{item}</Text>
+                    </View>
+                ) }
+            
+            
+            />       
         </View>
     );
 }

@@ -12,8 +12,9 @@ function Categories(){
                     <View>
                         <Text>{item}</Text>
                     </View>
-                ) }
-            
+                )}
+                keyExtractor={(category) => category}
+                    
             
             />       
         </View>

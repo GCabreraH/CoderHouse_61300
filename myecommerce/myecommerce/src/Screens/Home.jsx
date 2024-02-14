@@ -4,7 +4,7 @@ import Categories from "../components/Categories";
 
 function Home(){
     return(
-        <View>
+        <View style={{flex:1}}>
             <Text>Inicio: texto de Home.jsx</Text>
             <Header title={'Inicio por props para reutilizar'} />
             <Categories />

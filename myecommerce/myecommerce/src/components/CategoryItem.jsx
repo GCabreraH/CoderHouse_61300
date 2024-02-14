@@ -4,29 +4,21 @@ Lo que este componente renderice se debe pasar por props a Categories.
 */
 
 import { StyleSheet, Text, View } from 'react-native'
+import Card from "./Card";
 
 
 const CategoryItem = ({ category }) => {
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>{category}</Text>
-      </View>
+        <Card style={{paddingTop: 40}}>
+            <Text style={styles.text}>{category}</Text>
+        </Card>
     );
   };
   
   export default CategoryItem;
   
   const styles = StyleSheet.create({
-    container: {
-        shadowColor: "#000",
-        shadowOffset:{
-        width: 0,
-        height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-    },
+    
     text: {
       fontSize: 20,
     },

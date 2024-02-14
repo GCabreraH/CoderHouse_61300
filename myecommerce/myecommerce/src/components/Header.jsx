@@ -1,11 +1,20 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import {colors} from "../Global/colors";
 
 function Header({title}){
     return(
-        <View>
-            <Text style={{fontSize:20}}>{title}</Text>
+        <View style={styles.container}>
+            <Text style={{fontSize:30}}>{title}</Text>
         </View>
     );
 }
 
 export default Header;
+
+const styles = StyleSheet.create({
+    container:{
+        
+        backgroundColor: colors.color_100,
+    }
+
+});
